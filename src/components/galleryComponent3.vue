@@ -5,14 +5,18 @@
 
         <h2> {{ title }}</h2>
 
-        <img v-for="imagen in images_src" v-bind:src="imagen" v-bind:key="imagen" alt= "imagen del padre ">
+        
+        <div id="contenedorFotos" v-for="(imagen, index) in images_src" v-bind:key="imagen">
+            <img v-bind:src="imagen" alt= "imagen del padre "> <br>
+            <button v-on:click.prevent="eliminar(index)">Eliminar</button>
+        </div>
+        
         <hr>
 
         <form action="">
             <label for="nuevaImagen">Agrega un link de imagen</label> <br>
             <input type="text" id="nuevaImagen" v-model="newImage"> <br>
             <button v-on:click.prevent="agregar">Agregar</button>
-            <button v-on:click.prevent="eliminar">Eliminar</button>
         </form>
 
     </div>
@@ -83,6 +87,12 @@ label{
 hr{
     border: dotted rgb(255, 255, 255);
     border-radius: 50%;
+}
+
+#contenedorFotos{
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
 }
 
 
